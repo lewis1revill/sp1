@@ -106,19 +106,7 @@ macro_rules! entrypoint {
 
             #[no_mangle]
             fn main() {
-                // Link to the actual entrypoint only when compiling for zkVM, otherwise run a
-                // simple noop. Doing this avoids compilation errors when building for the host
-                // target.
-                //
-                // Note that, however, it's generally considered wasted effort compiling zkVM
-                // programs against the host target. This just makes it such that doing so wouldn't
-                // result in an error, which can happen when building a Cargo workspace containing
-                // zkVM program crates.
-                if cfg!(target_os = "zkvm") {
-                    super::ZKVM_ENTRY()
-                } else {
-                    println!("Not running in zkVM, skipping entrypoint");
-                }
+                super::ZKVM_ENTRY()
             }
         }
     };
