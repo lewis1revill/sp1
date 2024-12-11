@@ -95,6 +95,7 @@ macro_rules! entrypoint {
     ($path:path) => {
         const ZKVM_ENTRY: fn() = $path;
 
+        #[cfg(target_os = "zkvm")]
         use $crate::heap::SimpleAlloc;
 
         #[cfg(target_os = "zkvm")]
